@@ -1,0 +1,1 @@
+/home/d/Desktop/Kelo/divin_ws/devel/.private/robot_trailer/share/robot_trailer/cmake/robot_trailerConfig.cmake

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robot_trailer</name>
+  <version>0.1.0</version>
+  <description>Contains a robot trailer description (xacro) for running simulations in rviz</description>
+
+  <author email="devaiahua@gmail.com">Divin Devaiah</author>
+  <maintainer email="devaiahua@gmail.com">Divin Devaiah</maintainer>
+
+  <license>GPLv3</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>controller_manager</build_depend>
+  <build_depend>joint_state_controller</build_depend>
+  <build_depend>robot_state_publisher</build_depend>
+  <build_depend>urdf</build_depend>
+  
+  <exec_depend>controller_manager</exec_depend>
+  <exec_depend>joint_state_controller</exec_depend>
+  <exec_depend>robot_state_publisher</exec_depend>
+  <exec_depend>urdf</exec_depend>
+
+  <exec_depend>gazebo_ros</exec_depend>
+
+  <export>
+      <gazebo_ros gazebo_media_path="${prefix}/description"/>
+  </export>
+
+</package>

@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="robot_trailer">
+
+    <material name='blue'>
+	<color rgba="0. 0. 0.8 1" />
+    </material>
+
+    <material name='white'>
+	<color rgba="1. 1. 1. 1" />
+    </material>
+
+    <xacro:property name="namespace" value="$(arg namespace)"/>
+    <xacro:arg name="namespace" default="ropod"/>
+
+    <!-- Degree-to-radian conversions -->
+    <xacro:property name="degrees_45" value="0.785398163"/>
+    <xacro:property name="degrees_90" value="1.57079633"/>
+    <xacro:property name="degrees_180" value="3.14159265"/>
+
+    <!-- Inertia Generator -->
+    <xacro:macro name="default_inertial" params="mass inertia">
+        <inertial>
+            <mass value="${mass}" />
+            <inertia ixx="${inertia}" ixy="0.0" ixz="0.0" iyy="${inertia}" iyz="0.0" izz="${inertia}" />
+        </inertial>
+    </xacro:macro>
+
+    <!-- Basic Geometry of Body -->
+    <xacro:property name="body_length" value="0.6" />
+    <xacro:property name="body_width" value="0.6" />
+    <xacro:property name="body_height" value="0.1" />
+    <xacro:property name="body_mass" value="15"/>
+
+    <!-- Basic Geometry of Trailer -->
+    <xacro:property name="trailer_length" value="0.8" />
+    <xacro:property name="trailer_width" value="0.72" />
+    <xacro:property name="trailer_height" value="0.1" />
+    <xacro:property name="trailer_mass" value="2"/>
+
+    <!-- Front Wheel Properties -->
+    <xacro:property name="front_wheel_width" value="0.02" />
+    <xacro:property name="front_wheel_diameter" value="0.1" />
+    <xacro:property name="front_wheel_mass" value="4"/>
+
+    <!-- Steering Link Properties -->
+    <xacro:property name="steering_width" value="${front_wheel_width/4}" />
+    <xacro:property name="steering_diameter" value="${front_wheel_diameter/5}" />
+    <xacro:property name="steering_mass" value="0.01"/>
+
+    <!-- Rear Wheel Properties -->
+    <xacro:property name="rear_wheel_width" value="${front_wheel_width+steering_width}" />
+    <xacro:property name="rear_wheel_diameter" value="0.1" />
+    <xacro:property name="rear_wheel_mass" value="4"/>
+
+    <!-- Trailer Wheel Properties -->
+    <xacro:property name="trailer_wheel_width" value="0.02" />
+    <xacro:property name="trailer_wheel_diameter" value="0.1" />
+    <xacro:property name="trailer_wheel_mass" value="0.1"/>
+
+    <!-- Base Link -->
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="${body_length} ${body_width} ${body_height}"/>
+            </geometry>
+            <material name="blue" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${body_length} ${body_width} ${body_height}"/>
+            </geometry>
+        </collision>
+        <xacro:default_inertial mass="${body_mass}" inertia="2.0"/>
+    </link>
+
+    <!-- Front Wheel Macro -->
+    <xacro:macro name="front_wheel_link" params="prefix reflect">
+
+        <link name="${prefix}_front_wheel">
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="${degrees_90} 0.0 0.0"/>
+                <geometry>
+                    <sphere radius="${trailer_wheel_diameter/2}"/>
+                </geometry>
+            <material name="white" />
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="${degrees_90} 0.0 0.0"/>
+                <geometry>
+                    <sphere radius="${trailer_wheel_diameter/2}"/>
+                </geometry>
+            </collision>
+            <xacro:default_inertial mass="${front_wheel_mass}" inertia="2.0"/>
+        </link>
+
+        <joint name="${prefix}_front_axle" type="fixed">
+            <parent link="base_link"/>
+            <child link="${prefix}_front_wheel"/>
+            <origin xyz="${(body_length/2)-(front_wheel_diameter/2)} ${((body_width/2)-(front_wheel_diameter/2))*reflect} ${-(body_height/2)-(front_wheel_diameter/2)}"/>
+        </joint>
+
+    </xacro:macro>
+
+    <!-- Rear Wheel Macro -->
+    <xacro:macro name="rear_wheel_link" params="prefix reflect">
+
+        <link name="${prefix}_rear_wheel">
+            <visual>
+                <origin xyz="0.0 0.0 0.0" rpy="${degrees_90} 0.0 0.0"/>
+                <geometry>
+                    <sphere radius="${trailer_wheel_diameter/2}"/>
+                </geometry>
+            <material name="white" />
+            </visual>
+            <collision>
+                <origin xyz="0.0 0.0 0.0" rpy="${degrees_90} 0.0 0.0"/>
+                <geometry>
+                    <sphere radius="${trailer_wheel_diameter/2}"/>
+                </geometry>
+            </collision>
+            <xacro:default_inertial mass="${rear_wheel_mass}" inertia="2.0"/>
+        </link>
+
+        <joint name="${prefix}_rear_axle" type="fixed">
+            <parent link="base_link"/>
+            <child link="${prefix}_rear_wheel"/>
+            <origin xyz="${-(body_length/2)+(front_wheel_diameter/2)} ${((body_width/2)-(front_wheel_diameter/2))*reflect} ${-(body_height/2)-(front_wheel_diameter/2)}"/>
+        </joint>
+
+    </xacro:macro>
+
+    <xacro:front_wheel_link prefix="left" reflect="1" />
+    <xacro:front_wheel_link prefix="right" reflect="-1" />
+
+    <xacro:rear_wheel_link prefix="left" reflect="1" />
+    <xacro:rear_wheel_link prefix="right" reflect="-1" />
+
+    <!-- Trailer Link -->
+    <link name="trailer_link">
+        <visual>
+	    <origin xyz="${-trailer_length/2 - 0.25} 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="${trailer_length} ${trailer_width} ${trailer_height}"/>
+            </geometry>
+            <material name="blue" />
+        </visual>
+        <collision>
+	    <origin xyz="${-trailer_length/2 - 0.25} 0 0" rpy="0 0 0" />
+            <geometry>
+                <box size="${trailer_length} ${trailer_width} ${trailer_height}"/>
+            </geometry>
+        </collision>
+        <xacro:default_inertial mass="${trailer_mass}" inertia=".2"/>
+    </link>
+
+    <xacro:macro name="trailer_wheel_link" params="prefix reflect">
+	<link name="${prefix}_trailer_wheel">
+	    <visual>
+	        <origin xyz="0.0 0.0 0.0" rpy="${degrees_90} 0.0 0.0"/>
+	        <geometry>
+	            <sphere radius="${trailer_wheel_diameter/2}"/>
+	        </geometry>
+    		<material name="white" />
+	    </visual>
+	    <collision>
+	        <origin xyz="0.0 0.0 0.0" rpy="${degrees_90} 0.0 0.0"/>
+	        <geometry>
+	            <sphere radius="${trailer_wheel_diameter/2}"/>
+	        </geometry>
+	    </collision>
+	    <xacro:default_inertial mass="${trailer_wheel_mass}" inertia=".1"/>
+	</link>
+
+	<joint name="${prefix}_trailer_axle" type="fixed">
+	    <parent link="trailer_link"/>
+	    <child link="${prefix}_trailer_wheel"/>
+	    <origin xyz="${-(trailer_length)-0.25+(trailer_wheel_diameter/2)} ${((trailer_width/2)-(trailer_wheel_diameter/2))*reflect} ${-(trailer_height/2)-(trailer_wheel_diameter/2)}"/>
+	</joint>
+    </xacro:macro>
+
+    <xacro:trailer_wheel_link prefix="left" reflect="1" />
+    <xacro:trailer_wheel_link prefix="right" reflect="-1" />
+
+	<!-- Pivot Link -->
+	    <link name="pivot">
+		<visual>
+		    <geometry>
+		        <box size="0.1 0.1 0.1"/>
+		    </geometry>
+		    <material name="blue" />
+		</visual>
+		<collision>
+		    <geometry>
+		        <box size="0.1 0.1 0.1"/>
+		    </geometry>
+		</collision>
+	    </link>
+
+        <joint name="pivot_joint" type="fixed">
+            <parent link="base_link"/>
+            <child link="pivot"/>
+            <origin xyz="${-body_length/2} 0. 0."/>
+        </joint>
+
+        <joint name="trailer_pivot" type="revolute">
+            <parent link="pivot"/>
+            <child link="trailer_link"/>
+            <axis xyz="0 0 -1"/>
+            <origin xyz="0. 0. 0."/>
+	    <limit lower="${-degrees_90}" upper="${degrees_90}" effort="10" velocity="100"/>
+	    <dynamics damping="0.3" friction="0.05"/>
+        </joint>
+
+</robot>
+

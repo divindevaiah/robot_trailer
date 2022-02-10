@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="robot_id" value="/robot_trailer" />
+  <arg name="gui" default="true"/>
+  <arg name="use_sim_time" default="true"/>
+  <arg name="start_rviz" default="true"/>
+  <arg name="model" default="robot_trailer"/>
+
+  <arg name="rvizconfig" default="$(find robot_trailer)/description/rviz/robot_trailer.rviz"/>
+
+  <arg name="model_path" default="$(find robot_trailer)/description/xacro/$(arg model).xacro"/>
+  
+  <param name="robot_description" command="$(find xacro)/xacro.py $(arg model_path)"/>
+  <!--param name="use_gui" value="$(arg gui)"/-->
+  
+  <!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"> 
+	<param name="publish_frequency" value="10"/>
+	<param name="ignore_timestamp" value="true"/>
+  </node-->
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher">
+	<param name="publish_frequency" value="10"/>
+	<param name="ignore_timestamp" value="true"/>
+  </node>
+  
+  <node name="rviz" pkg="rviz" type="rviz" respawn="false" args="-d $(arg rvizconfig)" required="true"/>
+
+  <node name="controller" pkg="robot_trailer" type="controller.py" output="screen"/>
+
+</launch>
