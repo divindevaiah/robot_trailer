@@ -1,1 +1,1 @@
-/home/d/Desktop/Kelo/divin_ws/devel/.private/catkin_tools_prebuild/setup.sh
+/home/d/Desktop/Kelo/robot_trailer/divin_ws/devel/.private/catkin_tools_prebuild/setup.sh

@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/d/Desktop/Kelo/divin_ws/devel/.private/catkin_tools_prebuild:$CMAKE_PREFIX_PATH"
-export PWD='/home/d/Desktop/Kelo/divin_ws/build/catkin_tools_prebuild'
-export ROSLISP_PACKAGE_DIRECTORIES='/home/d/Desktop/Kelo/divin_ws/devel/.private/catkin_tools_prebuild/share/common-lisp'
-export ROS_PACKAGE_PATH="/home/d/Desktop/Kelo/divin_ws/build/catkin_tools_prebuild:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/d/Desktop/Kelo/robot_trailer/divin_ws/devel/.private/catkin_tools_prebuild:$CMAKE_PREFIX_PATH"
+export PWD='/home/d/Desktop/Kelo/robot_trailer/divin_ws/build/catkin_tools_prebuild'
+export ROSLISP_PACKAGE_DIRECTORIES='/home/d/Desktop/Kelo/robot_trailer/divin_ws/devel/.private/catkin_tools_prebuild/share/common-lisp'
+export ROS_PACKAGE_PATH="/home/d/Desktop/Kelo/robot_trailer/divin_ws/build/catkin_tools_prebuild:$ROS_PACKAGE_PATH"

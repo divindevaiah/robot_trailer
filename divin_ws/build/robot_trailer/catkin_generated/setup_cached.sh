@@ -7,7 +7,7 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/d/Desktop/Kelo/divin_ws/devel/.private/robot_trailer:$CMAKE_PREFIX_PATH"
-export PWD='/home/d/Desktop/Kelo/divin_ws/build/robot_trailer'
-export ROSLISP_PACKAGE_DIRECTORIES="/home/d/Desktop/Kelo/divin_ws/devel/.private/robot_trailer/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
-export ROS_PACKAGE_PATH="/home/d/Desktop/Kelo/divin_ws/src/robot_trailer:$ROS_PACKAGE_PATH"
+export CMAKE_PREFIX_PATH="/home/d/Desktop/Kelo/robot_trailer/divin_ws/devel/.private/robot_trailer:$CMAKE_PREFIX_PATH"
+export PWD='/home/d/Desktop/Kelo/robot_trailer/divin_ws/build/robot_trailer'
+export ROSLISP_PACKAGE_DIRECTORIES="/home/d/Desktop/Kelo/robot_trailer/divin_ws/devel/.private/robot_trailer/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
+export ROS_PACKAGE_PATH="/home/d/Desktop/Kelo/robot_trailer/divin_ws/src/robot_trailer:$ROS_PACKAGE_PATH"

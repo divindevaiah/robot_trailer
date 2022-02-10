@@ -1,4 +1,4 @@
-prefix=/home/d/Desktop/Kelo/divin_ws/install
+prefix=/home/d/Desktop/Kelo/robot_trailer/divin_ws/install
 
 Name: catkin_tools_prebuild
 Description: Description of catkin_tools_prebuild

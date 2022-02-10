@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/d/Desktop/Kelo/divin_ws/src/robot_trailer
+CMAKE_SOURCE_DIR = /home/d/Desktop/Kelo/robot_trailer/divin_ws/src/robot_trailer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/d/Desktop/Kelo/divin_ws/build/robot_trailer
+CMAKE_BINARY_DIR = /home/d/Desktop/Kelo/robot_trailer/divin_ws/build/robot_trailer
 
 # Utility rule file for rosgraph_msgs_generate_messages_nodejs.
 
@@ -67,6 +67,6 @@ CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean:
 .PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/clean
 
 CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend:
-	cd /home/d/Desktop/Kelo/divin_ws/build/robot_trailer && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/d/Desktop/Kelo/divin_ws/src/robot_trailer /home/d/Desktop/Kelo/divin_ws/src/robot_trailer /home/d/Desktop/Kelo/divin_ws/build/robot_trailer /home/d/Desktop/Kelo/divin_ws/build/robot_trailer /home/d/Desktop/Kelo/divin_ws/build/robot_trailer/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/d/Desktop/Kelo/robot_trailer/divin_ws/build/robot_trailer && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/d/Desktop/Kelo/robot_trailer/divin_ws/src/robot_trailer /home/d/Desktop/Kelo/robot_trailer/divin_ws/src/robot_trailer /home/d/Desktop/Kelo/robot_trailer/divin_ws/build/robot_trailer /home/d/Desktop/Kelo/robot_trailer/divin_ws/build/robot_trailer /home/d/Desktop/Kelo/robot_trailer/divin_ws/build/robot_trailer/CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/rosgraph_msgs_generate_messages_nodejs.dir/depend
 

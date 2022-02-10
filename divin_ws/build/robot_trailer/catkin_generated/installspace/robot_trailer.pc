@@ -1,4 +1,4 @@
-prefix=/home/d/Desktop/Kelo/divin_ws/install
+prefix=/home/d/Desktop/Kelo/robot_trailer/divin_ws/install
 
 Name: robot_trailer
 Description: Description of robot_trailer

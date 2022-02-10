@@ -1,1 +1,1 @@
-/home/d/Desktop/Kelo/divin_ws/devel/.private/catkin_tools_prebuild/_setup_util.py
+/home/d/Desktop/Kelo/robot_trailer/divin_ws/devel/.private/catkin_tools_prebuild/_setup_util.py
